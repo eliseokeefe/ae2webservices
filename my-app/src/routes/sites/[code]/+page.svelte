@@ -2,12 +2,22 @@
   let { data } = $props();
 </script>
 
-<a href="/search">Back to search</a>
-
+<a href="/search/{data.group}">Back to search</a>
 <h1>{data.site['@SiteName']}</h1>
 <p>Type: {data.site['@SiteType']}</p>
 
-<h2>Pollution species measured here</h2>
+{#if data.isTracked}
+  <form method="POST" action="?/remove">
+  <button type="submit">Remove from tracked sites</button>
+  </form>
+{:else}
+  <form method="POST" action="?/track">
+  <input type="hidden" name="site_name" value={data.site['@SiteName']} />
+  <button type="submit">Add to tracked sites</button>
+  </form>
+{/if}
+
+<h2>Pollution species</h2>
 
 {#each data.objectives as obj}
   <div>

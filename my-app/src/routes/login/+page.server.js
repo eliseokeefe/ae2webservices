@@ -14,11 +14,12 @@ export const actions = {
     const data = await request.formData();
     const email = data.get('email');
     const password = data.get('password');
-
     const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
+
     if (!user) return { error: 'No account found with that email' };
 
     const valid = await bcrypt.compare(password, user.password);
+    
     if (!valid) return { error: 'Incorrect password' };
 
     cookies.set('user_id', user.id, { path: '/', httpOnly: true });

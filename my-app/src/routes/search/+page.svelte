@@ -14,6 +14,6 @@
 <select onchange={handleSelect}>
   <option value="">Select a borough...</option>
   {#each data.groups as group}
-    <option value={group['@GroupName']}>{group['@GroupName']}</option>
+  <option value={group['@GroupName']}>{group['@GroupName']}</option>
   {/each}
 </select>

@@ -11,6 +11,7 @@ export async function load({ params }) {
 export const actions = {
  track: async ({ request, cookies, params }) => {
     const userId = cookies.get('user_id');
+    
     if (!userId) throw redirect(303, '/login');
 
     const data = await request.formData();
