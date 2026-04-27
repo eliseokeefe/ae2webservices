@@ -13,7 +13,9 @@ db.exec(`
     user_id INTEGER NOT NULL,
     site_code TEXT NOT NULL,
     site_name TEXT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    group_name TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    UNIQUE(user_id, site_code)
   );
 `);
 
