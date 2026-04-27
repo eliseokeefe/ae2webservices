@@ -12,7 +12,12 @@
   {#each data.sites as site}
     <div>
       <h2>{site.site_name}</h2>
-     <a href="/sites/{site.site_code}?group={site.group_name}">View details</a>
+      <a href="/sites/{site.site_code}?group={site.group_name}">View details</a>
+      
+      <form method="POST" action="?/remove">
+        <input type="hidden" name="site_code" value={site.site_code} />
+        <button type="submit">Remove</button>
+      </form>
     </div>
   {/each}
 {/if}
