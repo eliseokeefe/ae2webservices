@@ -29,3 +29,22 @@ export async function load({ params, url, cookies }) {
     isTracked: !!isTracked
   };
 }
+
+export const actions = {
+  track: async ({ request, cookies, params, url }) => {
+    const userId = cookies.get('user_id');
+    if (!userId) throw redirect(303, '/login');
+    const group = url.searchParams.get('group');
+    const data = await request.formData();
+    db.prepare('INSERT OR IGNORE INTO tracked_sites (user_id, site_code, site_name, group_name) VALUES (?, ?, ?, ?)')
+      .run(userId, params.code, data.get('site_name'), group);
+    return { success: true };
+  },
+  remove: async ({ cookies, params }) => {
+    const userId = cookies.get('user_id');
+    if (!userId) throw redirect(303, '/login');
+    db.prepare('DELETE FROM tracked_sites WHERE user_id = ? AND site_code = ?')
+      .run(userId, params.code);
+    return { success: true };
+  }
+};
