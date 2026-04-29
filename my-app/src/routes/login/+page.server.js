@@ -5,9 +5,10 @@ import { redirect } from '@sveltejs/kit';
 export const actions = {
   register: async ({ request, cookies }) => {
     const data = await request.formData();
+    const name = data.get('name');
     const email = data.get('email');
     const password = await bcrypt.hash(data.get('password'), 10);
-    db.prepare('INSERT INTO users (email, password) VALUES (?, ?)').run(email, password);
+    db.prepare('INSERT INTO users (name, email, password) VALUES (?, ?, ?)').run(name, email, password);
     throw redirect(303, '/');
   },
   login: async ({ request, cookies }) => {

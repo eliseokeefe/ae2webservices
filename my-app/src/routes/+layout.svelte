@@ -4,12 +4,13 @@ let { children, data } = $props();</script>
 
 <svelte:head>
   <link rel="icon" href="{favicon}" />
+  <title>London Air Quality Tracker</title>
 </svelte:head>
 
 <nav class="flex items-center justify-between px-8 py-4 bg-[#4a7a8a] text-white">
   <a href="/" class="text-2xl font-light tracking-wide text-white no-underline">☁ London Air</a>
   <div class="flex gap-8">
-    <a href="/" class="text-white no-underline hover:underline">Home</a>
+    <a href="/" aria-label="Home page logo" class="text-white no-underline hover:underline">Home</a>
     {#if data.user}
       <a href="/search" class="text-white no-underline hover:underline">Site Search</a>
       <a href="/tracked" class="text-white no-underline hover:underline">Tracked Sites</a>

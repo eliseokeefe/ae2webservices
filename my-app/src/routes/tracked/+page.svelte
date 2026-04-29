@@ -22,7 +22,7 @@
     </button>
   </div>
 
-  <p class="text-gray-500 mb-4">Click a site to be taken to the site details page</p>
+  <p class="text-gray-700 mb-4">Click a site to be taken to the site details page</p>
 
   {#if showFilter}
     <div class="bg-white border-2 border-[#4a7a8a] rounded-2xl p-4 mb-4 flex gap-6">
@@ -57,7 +57,7 @@
         <div class="bg-white rounded-xl p-4 flex items-center justify-between">
           <div>
             <h2 class="text-[#4a7a8a] font-medium">{site.site_name}</h2>
-            <p class="text-gray-500 text-sm">{site.siteType} · {site.dataOwner}</p>
+            <p class="text-gray-700 text-sm">{site.siteType} · {site.dataOwner}</p>
           </div>
           <div class="flex gap-3">
             <a href="/sites/{site.site_code}?group={site.group_name}" class="bg-[#4a7a8a] text-white px-4 py-2 rounded-xl text-sm hover:bg-[#3d6575] no-underline">View details</a>
